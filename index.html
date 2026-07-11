@@ -2189,12 +2189,11 @@
     video.addEventListener('loadeddata', markReady);
     setTimeout(markReady, 1800);
 
-    // Force a first frame render on mobile so the video isn't blank before scroll starts
-    if(isTouch){
-      video.addEventListener('loadeddata', function(){
-        try { video.currentTime = 0.01; } catch(e){}
-      });
-    }
+    // Force the video onto its first frame on ALL devices, so the initial state
+    // matches the poster image and there's no visual jump when scroll-scrub kicks in.
+    video.addEventListener('loadeddata', function(){
+      try { video.currentTime = 0.01; } catch(e){}
+    });
 
     function progress(){
       const scrollable = hero.offsetHeight - window.innerHeight;
