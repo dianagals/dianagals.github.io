@@ -2173,8 +2173,9 @@
     const layers  = Array.prototype.slice.call(document.querySelectorAll('.hero-layer'));
     if(!hero || !video) return;
 
-    // Phones / tablets can't frame-scrub reliably, so there we play the video
-    // as a smooth muted loop while the welcome still reacts to scroll.
+    // Scroll-scrub the video on ALL devices (desktop + mobile).
+    // On mobile it may be slightly less smooth than desktop but the sync with scroll
+    // matches user expectation, which is more important than perfect fluidity.
     const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
 
     let duration = 0, targetTime = 0, smoothTime = 0, ready = false;
@@ -2187,12 +2188,11 @@
     video.addEventListener('loadeddata', markReady);
     setTimeout(markReady, 1800);
 
+    // Force a first frame render on mobile so the video isn't blank before scroll starts
     if(isTouch){
-      video.setAttribute('loop','');
-      video.setAttribute('autoplay','');
-      const tryPlay = function(){ const pr = video.play(); if(pr && pr.catch) pr.catch(function(){}); };
-      video.addEventListener('loadeddata', tryPlay);
-      tryPlay();
+      video.addEventListener('loadeddata', function(){
+        try { video.currentTime = 0.01; } catch(e){}
+      });
     }
 
     function progress(){
@@ -2224,6 +2224,9 @@
     // Smooth scrub: ease toward the target time, and only request a new seek
     // once the previous one has finished. Serialises seeks → fluid playback.
     function raf(){
+      // Only scroll-scrub on desktop/hover devices. On mobile the video stays
+      // frozen on its first frame (set via the loadeddata handler above),
+      // acting as a static hero image.
       if(!isTouch && duration){
         smoothTime += (targetTime - smoothTime) * 0.14;
         if(seeking && performance.now() - seekStarted > 600) seeking = false;
