@@ -740,7 +740,12 @@
     .section-subtitle .br-not-tablet{display:none}
   }
   @media(max-width:600px){
-    .section-subtitle .br-phone{display:inline}
+    /* Let the paragraph flow naturally on phone — no forced breaks — and
+       shrink the type a touch so more words fit per line. */
+    .section-subtitle{font-size:15.5px;line-height:1.5}
+    .section-subtitle .br-phone,
+    .section-subtitle .br-tablet,
+    .section-subtitle .br-not-tablet{display:none}
   }
   @media(max-width:640px){
     .showcase-head{align-items:flex-start;text-align:left}
