@@ -608,10 +608,10 @@
   }
 
   @media(max-width:820px){
-    /* Mobile: hero is a static poster image. Keep ~30% extra scroll (150vh)
-       so the poster stays visible in the sticky child during that extra scroll,
-       giving the user time to breathe the hero before the next section. */
-    .hero-scroll{height:150vh}
+    /* Mobile: hero is a static poster image. Keep ~50% of the desktop scroll
+       distance (260vh) so the poster stays visible in the sticky child for a
+       nice slow reveal before entering the next section. */
+    .hero-scroll{height:260vh}
     .hero-progress{display:none}
     .hero-corner{font-size:10px;letter-spacing:.2em}
     .hero-corner.tl{top:22px;left:22px}
@@ -628,7 +628,7 @@
     .layer-final-welcome{font-size:clamp(34px,7vw,64px)}
   }
   @media(max-width:480px){
-    .hero-scroll{height:150vh}
+    .hero-scroll{height:260vh}
     .welcome-quote{font-size:clamp(22px,6vw,34px)}
     .intro-welcome{font-size:clamp(90px,30vw,140px)}
     .layer-welcome{font-size:clamp(60px,20vw,110px)}
