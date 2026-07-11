@@ -734,18 +734,20 @@
   }
   .section-subtitle .br-tablet{display:none}
   .section-subtitle .br-phone{display:none}
+  .section-subtitle .br-mobile{display:none}
   .section-subtitle .br-not-tablet{display:inline}
   @media(min-width:601px) and (max-width:820px){
     .section-subtitle .br-tablet{display:inline}
     .section-subtitle .br-not-tablet{display:none}
   }
   @media(max-width:600px){
-    /* Let the paragraph flow naturally on phone — no forced breaks — and
-       shrink the type a touch so more words fit per line. */
+    /* Phone: hide the tablet-specific breaks and use the .br-mobile breaks
+       for a tightly-controlled line layout. Slightly smaller type as well. */
     .section-subtitle{font-size:15.5px;line-height:1.5}
     .section-subtitle .br-phone,
     .section-subtitle .br-tablet,
     .section-subtitle .br-not-tablet{display:none}
+    .section-subtitle .br-mobile{display:inline}
   }
   @media(max-width:640px){
     .showcase-head{align-items:flex-start;text-align:left}
@@ -1549,7 +1551,7 @@
   <div class="container">
     <div class="showcase-head">
       <h2 class="title-btn reveal"><span class="title-letter">W</span><span class="title-letter">O</span><span class="title-letter">R</span><span class="title-letter">K</span><span class="title-letter">S</span></h2>
-      <p class="section-subtitle reveal d1">From branding and editorial design to<br class="br-phone"> <span class="it">AI-driven<br class="br-tablet"> visuals</span> and <span class="it">immersive storytelling</span>,<br class="br-not-tablet"> these projects reflect my passion<br class="br-tablet"> for creating meaningful visual experiences.</p>
+      <p class="section-subtitle reveal d1">From branding and editorial design to<br class="br-mobile"> <span class="it">AI-driven<br class="br-tablet"> visuals</span> and <span class="it">immersive<br class="br-mobile"> storytelling</span>,<br class="br-not-tablet"> these projects reflect my<br class="br-mobile"> passion<br class="br-tablet"> for creating meaningful visual<br class="br-mobile"> experiences.</p>
       <p class="works-hint reveal d2">Interact with the Polaroids!</p>
     </div>
 
